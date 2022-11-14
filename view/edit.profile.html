@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/office/2x/test-account.png">
+    <title>User Management System</title>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/style.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/profile" tabindex="-1">User Profile</a>
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Edit Profile</a>
+            </div>
+        </div>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/logout">Logout</a></li>
+        </ol>
+    </div>
+</nav>
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3"><h4 class="text-right">Profile
+                        Settings</h4></div>
+                <form action="/edit/profile" method="post" enctype="multipart/form-data">
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Email</label>
+                            <input type="text" {{if .GoogleId }} disabled {{end}} name="email" class="form-control" placeholder="enter email id" value="{{.Email}}">
+                        </div>
+                        <div class="col-md-12"><label class="labels">Full Name</label>
+                            <input type="text" name="fullname" class="form-control" placeholder="education" value="{{.Fullname}}">
+                        </div>
+                        <div class="col-md-12"><label class="labels">PhoneNumber</label>
+                            <input type="text" name="telephone" class="form-control" placeholder="enter phone number" value="{{.Telephone}}">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <button class="btn btn-primary profile-button" type="submit">Save & Continue</button>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="/profile" class="btn btn-warning " type="button">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html>

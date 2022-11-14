@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/office/2x/test-account.png">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/style.css" rel="stylesheet">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>User Management System</title>
+</head>
+<body>
+<section class="form-02-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="_lk_de">
+                    <div class="form-03-main">
+                        <form action="/registration" method="post" enctype="multipart/form-data">
+                            <div class="logo">
+                                <img src="../static/images/user.png">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="fullname" class="form-control _ge_de_ol" type="text" placeholder="Enter Full Name" required="" aria-required="true">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" name="telephone" class="form-control _ge_de_ol" type="text" placeholder="Enter Your Phone Number" required="" aria-required="true">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control _ge_de_ol" type="text" placeholder="Enter Email" required="" aria-required="true">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" id="password" name="password" class="form-control _ge_de_ol" type="text" placeholder="Enter Password" required="" aria-required="true">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" id="confirm_password" name="repeat_password" class="form-control _ge_de_ol" type="text" placeholder="Repeat Password" required="" aria-required="true">
+                                <span id='message'></span>
+                            </div>
+
+                            <div class="checkbox form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="">
+                                    <label class="form-check-label" for="">
+                                        Remember me
+                                    </label>
+                                </div>
+                                <a href="/login">Have an account? Login</a>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <input class="btn btn-primary" id="submit" type="submit" value="Registration">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="form-group nm_lk"><p>Or Login With</p></div>
+                        <div class="form-group pt-0">
+                            <div class="_social_04">
+                                <ol>
+                                    <div id="g_id_onload"
+                                         data-client_id="875438776162-esdt0n9pco3ca81ulapg0rvhj891e338.apps.googleusercontent.com"
+                                         data-ux_mode="redirect"
+                                         data-login_uri="https://user-management-client-app.herokuapp.com/google-login">
+                                    </div>
+                                    <div class="g_id_signin" data-type="standard"></div>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<script>
+    $('#password, #confirm_password').on('keyup', function () {
+        if ($('#password').val() === $('#confirm_password').val()) {
+            $('#submit').removeClass("disabled");
+            $('#message').html('Matched').css('color', 'green');
+        } else {
+            $('#submit').addClass("disabled");
+            $('#message').html('Not Matching').css('color', 'red');
+        }
+    });
+</script>
+</html>
