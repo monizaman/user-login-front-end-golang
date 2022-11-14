@@ -26,6 +26,10 @@ type UserToken struct {
 	StatusCode int
 }
 
+type GoogleToken struct {
+	Credential   string `json:"credential,omitempty"`
+}
+
 type UserProfile struct {
 	Email      string `json:"email,omitempty"`
 	Fullname   string `json:"fullname,omitempty"`

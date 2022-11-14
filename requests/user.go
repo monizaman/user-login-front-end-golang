@@ -3,6 +3,7 @@ package requests
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"github.com/spf13/viper"
 	"io/ioutil"
 	"net/http"
@@ -60,7 +61,9 @@ func GetAuthToken(loginForm structures.LoginForm, response chan structures.UserT
 // GetGoogleLoginToken TODO Has a duplicate code need to optimize
 func GetGoogleLoginToken(credential string, response chan structures.UserToken)  {
 	apiUrl := viper.GetString("api.base_url") +  "/api/google-login"
-	credentialJSON, err := json.Marshal(map[string]string{"credential": credential})
+	googleCredential := structures.GoogleToken{Credential: credential}
+	credentialJSON, err := json.Marshal(googleCredential)
+	fmt.Println(string(credentialJSON), "credentialJSON")
 	req, _ := http.NewRequest("POST", apiUrl, bytes.NewBuffer(credentialJSON))
 	var responseObject structures.UserToken
 	responseObject.Success = true

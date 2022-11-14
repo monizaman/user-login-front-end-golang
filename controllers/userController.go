@@ -152,6 +152,10 @@ func UserProfileController(w http.ResponseWriter, r *http.Request) {
 	userTokenResponseData := make(chan structures.UserProfile)
 	go requests.GetUserProfile(c.Value, userTokenResponseData)
 	userProfile := <-userTokenResponseData
+	if userProfile.StatusCode != 200 {
+		http.Redirect(w, r, "/login", http.StatusFound)
+		return
+	}
 	fmt.Println(userProfile.StatusCode, "userProfile.StatusCode")
 	fmt.Println(userProfile.Fullname, "userProfile.Fullname")
 	err = viewTemplate.Execute(w, userProfile)
