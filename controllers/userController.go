@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 	"time"
@@ -151,6 +152,8 @@ func UserProfileController(w http.ResponseWriter, r *http.Request) {
 	userTokenResponseData := make(chan structures.UserProfile)
 	go requests.GetUserProfile(c.Value, userTokenResponseData)
 	userProfile := <-userTokenResponseData
+	fmt.Println(userProfile.StatusCode, "userProfile.StatusCode")
+	fmt.Println(userProfile.Fullname, "userProfile.Fullname")
 	err = viewTemplate.Execute(w, userProfile)
 	if err != nil {
 		return
@@ -160,8 +163,10 @@ func UserProfileController(w http.ResponseWriter, r *http.Request) {
 
 func GoogleLoginUserController(w http.ResponseWriter, r *http.Request) {
 	userTokenResponseData := make(chan structures.UserToken)
+	fmt.Println(r.FormValue("credential"), "r.FormValue(credential)")
 	go requests.GetGoogleLoginToken(r.FormValue("credential"), userTokenResponseData)
 	userToken := <-userTokenResponseData
+	fmt.Println(userToken.Token, "userToken.Token")
 	http.SetCookie(w, &http.Cookie{
 		Name:    "token",
 		Value:   userToken.Token,
